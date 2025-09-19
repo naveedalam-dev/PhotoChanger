@@ -1,0 +1,6 @@
+{
+  "name": "Photo Changer",
+  "description": "An AI-powered photo editor. Change backgrounds, try on virtual outfits, and create new looks. Powered by Naveed Alam.",
+  "requestFramePermissions": [],
+  "prompt": ""
+}
