@@ -2,7 +2,7 @@
 
 A powerful and intuitive photo editing application that allows users to transform and enhance their images with ease.
 
-![PhotoChanger Banner](https://via.placeholder.com/800x400/4a90e2/ffffff?text=PhotoChanger)
+![PhotoChanger Dashboard](https://i.postimg.cc/D0CGzLZs/image.png)
 
 ## 🚀 Features
 
@@ -81,6 +81,12 @@ photoChanger.save('edited-image.jpg');
 
 ## 📸 Screenshots
 
+### Application Dashboard
+![PhotoChanger Dashboard](https://i.postimg.cc/D0CGzLZs/image.png)
+
+*The main dashboard showing the intuitive interface with photo editing tools and real-time preview*
+
+### Before & After Examples
 | Original | Edited |
 |----------|--------|
 | ![Original](https://via.placeholder.com/300x200/cccccc/333333?text=Original) | ![Edited](https://via.placeholder.com/300x200/4a90e2/ffffff?text=Edited) |
