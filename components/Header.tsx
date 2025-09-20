@@ -142,7 +142,7 @@ const Header: React.FC<HeaderProps> = ({ view, onNavigate, currentUser, onLogout
               ) : null }
               
               <a 
-                href="https://github.com/google/generative-ai-docs/tree/main/site/en/public/docs/hub/pro/virtual_try_on" 
+                href="https://github.com/naveedalam-dev/PhotoChanger/blob/main/README.md" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="hidden sm:flex items-center justify-center w-9 h-9 text-gray-500 bg-white border border-gray-200/80 rounded-full hover:bg-gray-100 hover:text-gray-800 transition-colors"
@@ -196,7 +196,7 @@ const Header: React.FC<HeaderProps> = ({ view, onNavigate, currentUser, onLogout
 
                   <div className="py-6 text-center">
                     <a 
-                      href="https://github.com/google/generative-ai-docs/tree/main/site/en/public/docs/hub/pro/virtual_try_on" 
+                      href="https://github.com/naveedalam-dev/PhotoChanger/blob/main/README.md" 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-3 px-6 py-3 text-base font-semibold text-white bg-white/10 border border-white/20 rounded-lg hover:bg-white/20 transition-colors"

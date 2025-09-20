@@ -48,7 +48,7 @@ const Footer: React.FC<FooterProps> = ({ isOnDressingScreen = false, onNavigate 
                     Your Style, Reimagined by AI. Create a personalized model, try on endless outfits, and design your perfect look.
                 </p>
                  <a 
-                    href="https://github.com/google/generative-ai-docs/tree/main/site/en/public/docs/hub/pro/virtual_try_on" 
+                    href="https://github.com/naveedalam-dev/PhotoChanger/blob/main/README.md" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 mt-4 text-sm font-semibold text-gray-600 hover:text-gray-900 transition-colors"

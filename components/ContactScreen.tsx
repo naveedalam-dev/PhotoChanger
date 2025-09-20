@@ -101,23 +101,23 @@ const ContactScreen: React.FC<ContactScreenProps> = ({ onNavigate }) => {
                 <div className="space-y-6">
                     <ContactInfoCard 
                         icon={<MailIcon className="w-6 h-6 text-indigo-600" />}
-                        title="Email Us"
-                        content={<a href="mailto:hello@example.com" className="hover:underline">hello@example.com</a>}
+                        title="Email"
+                        content={<a href="mailto:contact@naveedalam.dev" className="hover:underline">contact@naveedalam.dev</a>}
                     />
                     <ContactInfoCard 
                         icon={<PhoneIcon className="w-6 h-6 text-indigo-600" />}
-                        title="Call Us"
-                        content={<p>+1 (555) 123-4567</p>}
+                        title="WhatsApp"
+                        content={<a href="https://wa.me/923362255235" target="_blank" rel="noopener noreferrer" className="hover:underline">+92 336 2255235</a>}
                     />
                     <ContactInfoCard 
                         icon={<MapPinIcon className="w-6 h-6 text-indigo-600" />}
-                        title="Visit Us"
-                        content={<p>123 Style Avenue, Fashion City, 45678</p>}
+                        title="Location"
+                        content={<p>Islamabad, Pakistan</p>}
                     />
                 </div>
                  <div className="w-full h-64 bg-gray-200 rounded-lg overflow-hidden border border-gray-200/80">
                     <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.618036284699!2d-73.98784438459385!3d40.7484409793284!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9a4b3d2b9%3A0x1a8c38a2b85e7dcb!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1676302581021!5m2!1sen!2sus"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d212527.7511470879!2d72.93728330058882!3d33.61603746682738!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38dfbfd07891722f%3A0x6059515c3bdb02b6!2sIslamabad%2C%20Islamabad%20Capital%20Territory%2C%20Pakistan!5e0!3m2!1sen!2s!4v1718895085482!5m2!1sen!2s"
                         width="100%"
                         height="100%"
                         style={{ border: 0 }}
