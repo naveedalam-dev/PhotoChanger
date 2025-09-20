@@ -4,22 +4,8 @@
 */
 
 // FIX: Corrected the import statement for React hooks.
-import React, { useState, useMemo, useCallback, useEffect } from 'react';
+import React, { useState, useMemo, useCallback, useEffect, lazy, Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import StartScreen from './components/StartScreen';
-import Canvas from './components/Canvas';
-import WardrobePanel from './components/WardrobeModal';
-import OutfitStack from './components/OutfitStack';
-import BackgroundPanel from './components/BackgroundPanel';
-import AdjustmentPanel from './components/AdjustmentPanel';
-import SaveLoadPanel from './components/SaveLoadPanel';
-import AboutScreen from './components/AboutScreen';
-import FAQScreen from './components/FAQScreen';
-import ServicesScreen from './components/ServicesScreen';
-import BlogScreen from './components/BlogScreen';
-import ContactScreen from './components/ContactScreen';
-import AuthModal from './components/AuthModal';
-import { generateVirtualTryOnImage, generatePoseVariation, generateBackgroundReplacement, generateBackgroundReplacementWithImage } from './services/geminiService';
 import { OutfitLayer, WardrobeItem, AdjustmentValues, SavedOutfit, User } from './types';
 import { ChevronDownIcon, ChevronUpIcon } from './components/icons';
 import { defaultWardrobe } from './wardrobe';
@@ -27,18 +13,35 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 import { getFriendlyErrorMessage, generateThumbnail } from './lib/utils';
 import Spinner from './components/Spinner';
-import PrivacyPolicyScreen from './components/PrivacyPolicyScreen';
-import TermsOfServiceScreen from './components/TermsOfServiceScreen';
-import DisclaimerScreen from './components/DisclaimerScreen';
-import CookiePolicyScreen from './components/CookiePolicyScreen';
 import CookieConsentBanner from './components/CookieConsentBanner';
-import SitemapScreen from './components/SitemapScreen';
-import NotFoundScreen from './components/NotFoundScreen';
 
 // Data for SEO Schemas
 import { faqs } from './components/FAQScreen';
 import { blogPosts } from './components/BlogScreen';
 import { features as serviceFeatures } from './components/ServicesScreen';
+import { generateVirtualTryOnImage, generatePoseVariation, generateBackgroundReplacement, generateBackgroundReplacementWithImage } from './services/geminiService';
+
+// Lazy-load components to split code into smaller chunks
+const StartScreen = lazy(() => import('./components/StartScreen'));
+const Canvas = lazy(() => import('./components/Canvas'));
+const WardrobePanel = lazy(() => import('./components/WardrobeModal'));
+const OutfitStack = lazy(() => import('./components/OutfitStack'));
+const BackgroundPanel = lazy(() => import('./components/BackgroundPanel'));
+const AdjustmentPanel = lazy(() => import('./components/AdjustmentPanel'));
+const SaveLoadPanel = lazy(() => import('./components/SaveLoadPanel'));
+const AboutScreen = lazy(() => import('./components/AboutScreen'));
+const FAQScreen = lazy(() => import('./components/FAQScreen'));
+const ServicesScreen = lazy(() => import('./components/ServicesScreen'));
+const BlogScreen = lazy(() => import('./components/BlogScreen'));
+const ContactScreen = lazy(() => import('./components/ContactScreen'));
+const AuthModal = lazy(() => import('./components/AuthModal'));
+const PrivacyPolicyScreen = lazy(() => import('./components/PrivacyPolicyScreen'));
+const TermsOfServiceScreen = lazy(() => import('./components/TermsOfServiceScreen'));
+const DisclaimerScreen = lazy(() => import('./components/DisclaimerScreen'));
+const CookiePolicyScreen = lazy(() => import('./components/CookiePolicyScreen'));
+const SitemapScreen = lazy(() => import('./components/SitemapScreen'));
+const NotFoundScreen = lazy(() => import('./components/NotFoundScreen'));
+
 
 const POSE_INSTRUCTIONS = [
   "Full frontal view, hands on hips",
@@ -674,9 +677,15 @@ const App: React.FC = () => {
         onLogout={handleLogout}
       />
       <main className="flex-grow">
-        <AnimatePresence mode="wait">
-          {renderContent()}
-        </AnimatePresence>
+        <Suspense fallback={
+            <div className="w-full h-[calc(100vh-61px)] flex items-center justify-center">
+                <Spinner />
+            </div>
+        }>
+            <AnimatePresence mode="wait">
+              {renderContent()}
+            </AnimatePresence>
+        </Suspense>
       </main>
       <Footer isOnDressingScreen={view === 'editor'} onNavigate={handleNavigate} />
       <CookieConsentBanner 
@@ -684,15 +693,17 @@ const App: React.FC = () => {
         onConsent={handleCookieConsent}
         onNavigate={handleNavigate}
       />
-      <AuthModal 
-        isOpen={isAuthModalOpen}
-        onClose={() => setIsAuthModalOpen(false)}
-        onSuccess={(user) => {
-          setCurrentUser(user);
-          setIsAuthModalOpen(false);
-        }}
-        cookieConsent={cookieConsent}
-      />
+      <Suspense fallback={null}>
+        <AuthModal 
+          isOpen={isAuthModalOpen}
+          onClose={() => setIsAuthModalOpen(false)}
+          onSuccess={(user) => {
+            setCurrentUser(user);
+            setIsAuthModalOpen(false);
+          }}
+          cookieConsent={cookieConsent}
+        />
+      </Suspense>
     </div>
   );
 };
