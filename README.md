@@ -89,7 +89,7 @@ photoChanger.save('edited-image.jpg');
 ### Before & After Examples
 | Original | Edited |
 |----------|--------|
-| ![Original](https://via.placeholder.com/300x200/cccccc/333333?text=Original) | ![Edited](https://via.placeholder.com/300x200/4a90e2/ffffff?text=Edited) |
+| ![Original](https://i.postimg.cc/Rhw85CVj/pic.jpg) | ![Edited](https://i.postimg.cc/QCqbJFMx/image-m.png) |
 
 ## 🗂️ Project Structure
 
@@ -164,13 +164,6 @@ If you encounter any bugs or have feature requests, please [create an issue](htt
 ## ⭐ Show Your Support
 
 If you found this project helpful, please give it a ⭐ on [GitHub](https://github.com/naveedalam-dev/PhotoChanger)!
-
-## 📈 Stats
-
-![GitHub stars](https://img.shields.io/github/stars/naveedalam-dev/PhotoChanger?style=social)
-![GitHub forks](https://img.shields.io/github/forks/naveedalam-dev/PhotoChanger?style=social)
-![GitHub issues](https://img.shields.io/github/issues/naveedalam-dev/PhotoChanger)
-![GitHub license](https://img.shields.io/github/license/naveedalam-dev/PhotoChanger)
 
 ---
 
