@@ -58,12 +58,20 @@ const handleApiResponse = (response: GenerateContentResponse): string => {
 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY! });
 const model = 'gemini-2.5-flash-image-preview';
 
-export const generateModelImage = async (userImage: File): Promise<string> => {
+export const generateModelImage = async (userImage: File, userPrompt: string): Promise<string> => {
     const userImagePart = await fileToPart(userImage);
-    const prompt = "You are an expert fashion photographer AI. Transform the person in this image into a full-body fashion model photo suitable for an e-commerce website. The background must be a clean, neutral studio backdrop (light gray, #f0f0f0). The person should have a neutral, professional model expression. Preserve the person's identity, unique features, and body type, but place them in a standard, relaxed standing model pose. The final image must be photorealistic. Return ONLY the final image.";
+    const systemPrompt = `You are an expert fashion photographer AI. Your task is to transform the person in the provided image into a full-body fashion model photo based on the user's request.
+**Core Instructions:**
+1.  **Preserve Identity:** You MUST preserve the person's identity, unique facial features, and body type from the original image.
+2.  **Clean Background:** Unless the user specifies a different background, place the model against a clean, neutral studio backdrop (e.g., light gray, #f0f0f0).
+3.  **Photorealistic Output:** The final image must be photorealistic.
+4.  **Follow User's Lead:** The user's prompt is the primary creative direction. Interpret it to adjust the model's pose, expression, style, and background if requested.
+5.  **Output:** Return ONLY the final generated image. Do not include any text, headers, or explanations.
+
+**User's Creative Request:** "${userPrompt}"`;
     const response = await ai.models.generateContent({
         model,
-        contents: { parts: [userImagePart, { text: prompt }] },
+        contents: { parts: [userImagePart, { text: systemPrompt }] },
         config: {
             responseModalities: [Modality.IMAGE, Modality.TEXT],
         },

@@ -70,3 +70,50 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #9ca3af; /* Darker gray on hover */
 }
+
+/* Custom slider styles */
+input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  background: #E5E7EB; /* gray-200 */
+  border-radius: 9999px;
+  outline: none;
+  cursor: pointer;
+}
+
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #1F2937; /* gray-800 */
+  border: 2px solid white;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  border-radius: 50%;
+  cursor: pointer;
+  margin-top: -4px; /* Vertically center */
+}
+
+input[type='range']::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: #1F2937; /* gray-800 */
+  border: 2px solid white;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+}
+
+input[type='range']:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+input[type='range']:disabled::-webkit-slider-thumb {
+  background: #9CA3AF; /* gray-400 */
+}
+input[type='range']:disabled::-moz-range-thumb {
+  background: #9CA3AF; /* gray-400 */
+}

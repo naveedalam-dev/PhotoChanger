@@ -4,6 +4,7 @@
 */
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { AdjustmentValues } from "../types";
  
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -71,5 +72,38 @@ export const urlToFile = (url: string, filename: string): Promise<File> => {
         };
 
         image.src = url;
+    });
+};
+
+// Generates a small thumbnail with filters applied for saved outfit previews
+export const generateThumbnail = (imageUrl: string, adjustments: AdjustmentValues): Promise<string> => {
+    return new Promise((resolve, reject) => {
+        const image = new Image();
+        image.crossOrigin = 'anonymous';
+
+        image.onload = () => {
+            const canvas = document.createElement('canvas');
+            const THUMBNAIL_WIDTH = 100;
+            const aspectRatio = image.naturalHeight / image.naturalWidth;
+            canvas.width = THUMBNAIL_WIDTH;
+            canvas.height = THUMBNAIL_WIDTH * aspectRatio;
+
+            const ctx = canvas.getContext('2d');
+            if (!ctx) {
+                return reject(new Error('Could not get canvas context for thumbnail.'));
+            }
+
+            ctx.filter = `brightness(${adjustments.brightness}%) contrast(${adjustments.contrast}%) saturate(${adjustments.saturation}%)`;
+            ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+            
+            // Use JPEG for smaller file size, with a quality of 80%
+            resolve(canvas.toDataURL('image/jpeg', 0.8));
+        };
+
+        image.onerror = (error) => {
+            reject(new Error(`Could not load image to generate thumbnail. Error: ${error}`));
+        };
+
+        image.src = imageUrl;
     });
 };

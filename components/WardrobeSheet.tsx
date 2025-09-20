@@ -5,7 +5,7 @@
 import React, { useState } from 'react';
 import { defaultWardrobe } from '../wardrobe';
 import type { WardrobeItem } from '../types';
-import { UploadCloudIcon, CheckCircleIcon, XIcon } from './icons';
+import { UploadCloudIcon, CheckCircleIcon, CloseIcon } from './icons';
 import { AnimatePresence, motion } from 'framer-motion';
 
 
@@ -75,7 +75,7 @@ const WardrobeModal: React.FC<WardrobeModalProps> = ({ isOpen, onClose, onGarmen
                     <div className="flex items-center justify-between p-4 border-b">
                         <h2 className="text-2xl font-serif tracking-wider text-gray-800">Add Garment</h2>
                         <button onClick={onClose} className="p-1 rounded-full text-gray-500 hover:bg-gray-100 hover:text-gray-800">
-                            <XIcon className="w-6 h-6"/>
+                            <CloseIcon className="w-6 h-6"/>
                         </button>
                     </div>
                     <div className="p-6 overflow-y-auto">

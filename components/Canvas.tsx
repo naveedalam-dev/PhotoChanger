@@ -6,6 +6,7 @@ import React, { useState } from 'react';
 import { RotateCcwIcon, ChevronLeftIcon, ChevronRightIcon, DownloadIcon } from './icons';
 import Spinner from './Spinner';
 import { AnimatePresence, motion } from 'framer-motion';
+import { AdjustmentValues } from '../types';
 
 interface CanvasProps {
   displayImageUrl: string | null;
@@ -17,9 +18,10 @@ interface CanvasProps {
   currentPoseIndex: number;
   availablePoseKeys: string[];
   isMobile: boolean;
+  adjustments: AdjustmentValues;
 }
 
-const Canvas: React.FC<CanvasProps> = ({ displayImageUrl, onStartOver, isLoading, loadingMessage, onSelectPose, poseInstructions, currentPoseIndex, availablePoseKeys, isMobile }) => {
+const Canvas: React.FC<CanvasProps> = ({ displayImageUrl, onStartOver, isLoading, loadingMessage, onSelectPose, poseInstructions, currentPoseIndex, availablePoseKeys, isMobile, adjustments }) => {
   const [isPoseMenuOpen, setIsPoseMenuOpen] = useState(false);
   
   const handleDownload = () => {
@@ -79,6 +81,11 @@ const Canvas: React.FC<CanvasProps> = ({ displayImageUrl, onStartOver, isLoading
         onSelectPose(newGlobalPoseIndex);
     }
   };
+
+  const imageStyle: React.CSSProperties = {
+    filter: `brightness(${adjustments.brightness}%) contrast(${adjustments.contrast}%) saturate(${adjustments.saturation}%)`,
+    transition: 'filter 0.3s ease-in-out',
+  };
   
   return (
     <div className="w-full h-full flex items-center justify-center p-4 relative animate-zoom-in group">
@@ -112,6 +119,7 @@ const Canvas: React.FC<CanvasProps> = ({ displayImageUrl, onStartOver, isLoading
             src={displayImageUrl}
             alt="Virtual try-on model"
             className="max-w-full max-h-full object-contain transition-opacity duration-500 animate-fade-in rounded-lg"
+            style={imageStyle}
           />
         ) : (
             <div className="w-[400px] h-[600px] bg-gray-100 border border-gray-200 rounded-lg flex flex-col items-center justify-center">

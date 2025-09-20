@@ -161,7 +161,7 @@ const BackgroundPanel: React.FC<BackgroundPanelProps> = ({ onBackgroundChange, o
                     disabled={isLoading}
                     className="relative aspect-square border rounded-lg overflow-hidden transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 group disabled:opacity-60 disabled:cursor-not-allowed"
                   >
-                    <img src={item.url} alt={item.name} className="w-full h-full object-cover"/>
+                    <img src={item.url} alt={item.name} className="w-full h-full object-cover" loading="lazy" decoding="async" />
                     <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                       <p className="text-white text-xs font-bold text-center p-1">{item.name}</p>
                     </div>
